@@ -13,6 +13,7 @@ import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import VueFuse from 'vue-fuse'
 
+
 Vue.use(VueMaterial)
 
 Vue.use(VueFuse)
@@ -30,7 +31,12 @@ Vue.use(VueFuse)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('index-persona', require('./components/indexPersona.vue').default);
-Vue.component('card-persona', require('./components/CardPersona.vue').default)
+Vue.component('card-persona', require('./components/CardPersona.vue').default);
+Vue.component('agregar-persona', require('./components/AgregarPersona.vue').default);
+Vue.component('empty-persona', require('./components/EmptyPersona.vue').default);
+
+//Habilita el objeto para mandar y recibir
+window.EventBus = new Vue();
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

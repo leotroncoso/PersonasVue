@@ -53,7 +53,10 @@
 
       <md-app-content>
         <card-persona></card-persona>
-      <md-button class="md-fab md-primary md-fab-bottom-right">
+        <empty-persona></empty-persona>
+        <agregar-persona></agregar-persona>
+
+      <md-button class="md-fab md-primary md-fab-bottom-right" @click="activar_ventana_agregar()">
         <md-icon>add</md-icon>
       </md-button>
       </md-app-content>
@@ -85,6 +88,10 @@ export default {
   data: () => ({
     menuVisible: false,
     nombre_app: 'Vista Persona'
-  })
+  }), methods:{
+    activar_ventana_agregar(){
+      EventBus.$emit("activar-ventana-agregar",true);
+    }
+  }
 }
 </script>
