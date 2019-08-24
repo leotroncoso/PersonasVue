@@ -11,24 +11,22 @@
 
             <md-field>
                 <label>Cédula</label>
-                <md-input v-model="number" type="number"></md-input>
+                <md-input v-model="cedula" type="number" readonly></md-input>
             </md-field>
 
             <md-field>
                 <label>Nombre</label>
-                <md-input v-model="number"</md-input>
+                <md-input v-model="nombre" readonly></md-input>
             </md-field>
 
             <md-field>
                 <label>Apellido</label>
-                <md-input v-model="number"</md-input>
+                <md-input v-model="apellido" readonly></md-input>
             </md-field>
 
             <md-field>
-                <label for="sexo">Sexo</label>
-                <md-select v-model="movie" name="movie" id="movie">
-                    <md-option v-for="sexo in sexos" :value="sexo.id" :key="sexo.id">{{sexo.valor}}</md-option>
-                </md-select>
+                <label for="movie">Sexo</label>
+                <md-input v-model="sexo" readonly></md-input>
             </md-field>
     
     </md-card-content>
@@ -36,8 +34,7 @@
        
 
         <md-card-actions>
-          <md-button type="submit" class="md-primary" :disabled="sending">Guardar</md-button>
-          <md-button type="submit" class="md-primary" :disabled="sending" @click="showDialog=false">Cerrar</md-button>
+          <md-button class="md-primary" :disabled="sending" @click="showDialog=false">Cerrar</md-button>
         </md-card-actions>
       </md-card>
 
@@ -66,17 +63,24 @@
     name: 'DialogCustom',
     data: () => ({
       showDialog: false,
-        sexos:[{
+        sexo:[{
             id:1,
             valor:"Masculino"
         },
         {
             id:2,
             valor:"Femenino"
-        }
-        ]
+        },
+        ], cedula:"",
+        nombre:"",
+        apellido:"",
+        sexo:"",
       }),mounted(){
-        EventBus.$on('activar-ventana-agregar',data =>{
+        EventBus.$on('activar-ventana-ver',data =>{
+            this.cedula = data.cedula;
+            this.nombre = data.nombre;
+            this.apellido = data.apellido;
+            this.sexo = data.nombre_sexo;
             this.showDialog=true;
             
         })

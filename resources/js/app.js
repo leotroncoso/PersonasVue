@@ -34,6 +34,7 @@ Vue.component('index-persona', require('./components/indexPersona.vue').default)
 Vue.component('card-persona', require('./components/CardPersona.vue').default);
 Vue.component('agregar-persona', require('./components/AgregarPersona.vue').default);
 Vue.component('empty-persona', require('./components/EmptyPersona.vue').default);
+Vue.component('ver-persona', require('./components/VerPersona.vue').default);
 
 //Habilita el objeto para mandar y recibir
 window.EventBus = new Vue();

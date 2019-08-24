@@ -10,10 +10,11 @@
            <span class="md-title">{{nombre_app}}</span>
         </div>
         <vue-fuse 
-        :keys="keys" 
-        :list="bikes" 
-        :defaultAll="false" 
-        :eventName="bikesChanged"
+        :keys="persona_keys" 
+        :list="personas" 
+        :defaultAll="true" 
+        :threshold="0.3"
+        @fuseResultsUpdated="results($event)"
         class="fuse">
         </vue-fuse>
             
@@ -53,7 +54,7 @@
 
       <md-app-content>
         <card-persona></card-persona>
-        <empty-persona></empty-persona>
+        <empty-persona v-if="personas.lenght == 0"> </empty-persona>
         <agregar-persona></agregar-persona>
 
       <md-button class="md-fab md-primary md-fab-bottom-right" @click="activar_ventana_agregar()">
@@ -63,6 +64,7 @@
     </md-app>
   </div>
 </template>
+
 
 <style lang="scss" scoped>
   .md-app {
@@ -87,10 +89,46 @@ export default {
   name: 'Reveal',
   data: () => ({
     menuVisible: false,
-    nombre_app: 'Vista Persona'
-  }), methods:{
+    nombre_app: 'Vista Persona',
+    personas:[],
+    persona_keys:['cedula','nombre','apellido']
+  }),
+  created(){
+    this.personas=[
+      {
+        id:1,
+        nombre:"Leonardo",
+        apellido:"Troncoso",
+        cedula:"85461009",
+        sexo:1,
+        nombre_sexo:"Masculino"
+      },
+      {
+        id:2,
+        nombre:"David",
+        apellido:"Troncoso",
+        cedula:"95461009",
+        sexo:1,
+        nombre_sexo:"Masculino"
+      },
+      {
+        id:3,
+        nombre:"Maria",
+        apellido:"Troncoso",
+        cedula:"36461009",
+        sexo:2,
+        nombre_sexo:"Femenino"
+      }
+    ]
+  }, 
+  
+  
+  methods:{
     activar_ventana_agregar(){
       EventBus.$emit("activar-ventana-agregar",true);
+    },
+    results(data){
+      EventBus.$emit("buscar-personas",data);
     }
   }
 }
