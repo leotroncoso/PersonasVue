@@ -2,7 +2,7 @@
 <md-card>
       <md-card-header>
 
-        <md-avatar class="md-avatar-icon">A</md-avatar>
+        <md-avatar class="md-avatar-icon md-primary">A</md-avatar>
 
         <md-card-header-text>
           <div class="md-title">Media card</div>
